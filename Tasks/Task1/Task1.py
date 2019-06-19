@@ -1,0 +1,5 @@
+a = float(input('Input the number A '))
+b = float(input('Input the number B '))
+print(a + b, 'This is the sum')
+print(a - b, 'This is difference')
+print(a * b, 'This is multiplying')
