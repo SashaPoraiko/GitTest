@@ -1,12 +1,11 @@
 count = int(input("Enter the count of numbers: "))
+# 1/1+1/2+1/3+...
 
-x = 2
-summary = 0
-while count >= 0:
-    count -= 1
-    if summary != 0:
-        summary += (summary / (x + 1))
-    else:
-        summary += (x / (x + 1))
-    x += 1
-print('The answer is: {0}'.format(summary))
+result = 0
+i = 0
+
+while i < count:
+    i += 1
+    result += 1 / i
+
+print(result)
