@@ -2,8 +2,8 @@ data = input('Enter the sentence: ').split()
 result = []
 i = 0
 
-while i < data.__len__():
-    if not result.__contains__(data[i]):
+while i < len(data):
+    if not data[i] in result:
         result.append(data[i])
     i += 1
 
