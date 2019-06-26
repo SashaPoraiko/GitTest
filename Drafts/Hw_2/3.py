@@ -1,12 +1,12 @@
 firstW = input('Enter the first word: ')
 secondW = input('Enter the second Word: ')
 sentence = input('Enter the sentence: ').split()
-output = []
+result = []
 
 for w in sentence:
     if w == firstW:
-        output.append(secondW)
+        result.append(secondW)
         continue
-    output.append(w)
+    result.append(w)
 
-print(' '.join(output))
+print(' '.join(result))
