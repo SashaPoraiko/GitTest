@@ -9,4 +9,4 @@ while i < len(arr):
         res.append(arr[i])
     i += 1
 
-print(res)
+print(' \n'.join(str(item) * 5 for item in res))
