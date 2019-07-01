@@ -9,4 +9,17 @@ while i < len(arr):
         res.append(arr[i])
     i += 1
 
-print('\n'.join(str(item) * 5 for item in res))
+# print('\n'.join(str(item) for item in res if ))
+
+j = 0
+res2 = []
+for i in res:
+    if j < 2:
+        res2.append(i)
+    else:
+        print(res2)
+        j = 0
+        res2 = []
+        res2.append(i)
+    j += 1
+print(res2)
