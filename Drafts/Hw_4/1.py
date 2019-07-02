@@ -7,3 +7,4 @@ for i in firstArr:
         crossingArr.append(i)
 
 print('The sum is:{0}, and the greatest element is:{1}'.format(sum(crossingArr), max(crossingArr)))
+
