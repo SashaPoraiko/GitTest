@@ -1,26 +1,24 @@
 arr = [int(item) for item in input('Fill the first list: ').split()]
 
+temporary = []
 res = []
-res2 = []
-j = 1
+i = 0
 
-while j < len(arr):
-    if arr[j] > arr[j - 1]:
-        res.append(arr[j - 1])
-        res.append(arr[j])
-    else:
-        res2.append(res)
-        res = []
-    j += 1
+while i + 1 < len(arr):
+    while i + 1 < len(arr) and arr[i] < arr[i + 1]:
+        temporary.append(arr[i])
+        i += 1
+    temporary.append(arr[i])
+    res.append(temporary)
+    temporary = []
+    i += 1
 
-maxlen = 0
-maximum = []
-k = 0
+maxCell = 0
+largestChain = []
 
-while k < len(res2):
-    if len(res2[k]) > maxlen:
-        maximum = res2[k]
-        maxlen = len(res2[k])
-    k += 1
+for c in res:
+    if len(c) > maxCell:
+        maxCell = len(c)
+        largestChain = c
 
-print(res2)
+print(largestChain)
