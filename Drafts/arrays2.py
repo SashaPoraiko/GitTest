@@ -1,4 +1,4 @@
-arr = [int(item) for item in input('Fill the first list: ').split()]
+arr = [int(item) for item in input('Fill the list: ').split()]
 
 temporary = []
 res = []
