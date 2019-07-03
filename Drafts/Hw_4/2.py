@@ -9,16 +9,18 @@ while i + 1 < len(arr):
         temporary.append(arr[i])
         i += 1
     temporary.append(arr[i])
-    res.append(temporary)
+    if len(res) < len(temporary):
+        res = temporary
+    # res.append(temporary)
     temporary = []
     i += 1
 
-maxCell = 0
-largestChain = []
+# maxCell = 0
+# largestChain = []
+#
+# for c in res:
+#     if len(c) > maxCell:
+#         maxCell = len(c)
+#         largestChain = c
 
-for c in res:
-    if len(c) > maxCell:
-        maxCell = len(c)
-        largestChain = c
-
-print(largestChain)
+print(res)
