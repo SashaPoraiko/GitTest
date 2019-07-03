@@ -21,4 +21,14 @@ for c in res:
         maxCell = len(c)
         largestChain = c
 
-print(largestChain)
+print(res)
+
+# while i + 1 < len(arr):
+#     if arr[i] < arr[i + 1]:
+#         temporary.append(arr[i])
+#         i += 1
+#         continue
+#     temporary.append(arr[i])
+#     res.append(temporary)
+#     temporary = []
+#     i += 1
