@@ -1,21 +1,18 @@
 text = input('Enter the text: ').split()
-aCount = []
-counter = 0
 i = 0
-indexes = []
+counts = []
 res = []
+
 for t in text:
-    for item in t:
-        if item == 'a' or item == 'A':
-            counter += 1
-    aCount.append(counter)
-    counter = 0
+    counts.append(t.count('a') + t.count('A'))
 
-topLen = max(aCount)
+topLen = max(counts)
 
-while i < len(aCount):
-    if aCount[i] == topLen:
+while i < len(counts):
+    if counts[i] == topLen:
         res.append(text[i])
     i += 1
 
 print(res)
+
+
