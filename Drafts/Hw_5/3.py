@@ -1,7 +1,6 @@
 text = input('Enter the text: ').split()
 newWord = ''
 res = []
-middle = 0
 i = 0
 
 for t in text:
@@ -9,9 +8,8 @@ for t in text:
         res.append(t)
         continue
     else:
-        middle = int(len(t) / 2)
         while i < len(t):
-            if i == middle:
+            if i == int(len(t)/2):
                 i += 1
                 continue
             newWord += t[i]
