@@ -1,22 +1,12 @@
 text = input('Enter the text: ').split()
-newWord = ''
+
 res = []
-i = 0
 
-for t in text:
-    if len(t) % 2 == 0:
-        res.append(t)
-        continue
+for word in text:
+    if len(word) % 2 == 0:
+        res.append(word)
     else:
-        while i < len(t):
-            if i == int(len(t)/2):
-                i += 1
-                continue
-            newWord += t[i]
-            i += 1
-        i = 0
-
-    res.append(newWord)
-    newWord = ''
+        middle = int(len(word) / 2)
+        res.append(word[:middle] + word[middle + 1:])
 
 print(res)

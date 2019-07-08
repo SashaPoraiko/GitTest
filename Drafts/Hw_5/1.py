@@ -14,16 +14,10 @@ arr2 = [
 
 res = []
 i = 0
-k = 0
-miniRes = []
+
 
 for item in arr:
-    while k < len(arr[i]):
-        miniRes.append(max(arr2[i]) * item[k])
-        k += 1
+    res.append([max(arr2[i]) * item2 for item2 in item])
     i += 1
-    k = 0
-    res.append(miniRes)
-    miniRes = []
 
 print(res)
