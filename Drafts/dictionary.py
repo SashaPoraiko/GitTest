@@ -9,9 +9,10 @@ for word in text:
         myDictionary[word] += 1
 
 res = []
+maxim = max(myDictionary.values())
 
 for key, value in myDictionary.items():
-    if value == max(myDictionary.values()):
+    if value == maxim:
         res.append(key)
 
 print(min(res))
