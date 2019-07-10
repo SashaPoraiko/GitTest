@@ -13,17 +13,17 @@ arr = [
 
 ]
 
-
 x = 3
 
 i = 0
 while i < len(arr):
-    if x in arr[i]:
+    while x in arr[i]:
         k = arr[i].index(x)
+        arr[i][k] = -1
         for item in arr:
             item.pop(k)
+        print(arr)
         arr.pop(i)
-    else:
-        i += 1
+    i += 1
 
 print(arr)
