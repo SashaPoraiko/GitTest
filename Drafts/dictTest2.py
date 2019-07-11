@@ -1,22 +1,46 @@
-bank = []
-name = ''
+command = ''
+bankClients = {}
+
 while True:
+
     command = input('Enter the command: ')
-    name = input('Enter the name: ')
-    klient = {}
-    if command == 'Deposit':
-        if name not in bank:
-            klient[name] = int(input('Enter the sum'))
+    if command == 'end':
+        break
+
+    name = input('Enter your name: ')
+
+    if name not in bankClients:
+        bankClients[name] = 0
+
+    if command == 'deposit':
+        bankClients[name] += int(input('Enter the sum: '))
+        continue
+
+    elif command == 'withdraw':
+        bankClients[name] -= int(input('Enter the sum: '))
+        continue
+
+    elif command == 'balance':
+        print('Your current balance is: {0}'.format(bankClients[name]))
+        continue
+    elif command == 'transfer':
+        firstClientName = input('Enter the sender client name: ')
+        secondClientName = input('Enter the receiver client name: ')
+        summary = int(input('Enter the transfer sum : '))
+
+        if firstClientName not in bankClients:
+            bankClients[firstClientName] = 0
+        if secondClientName not in bankClients:
+            bankClients[secondClientName] = 0
+        if summary > bankClients[firstClientName]:
+            print('There are not enough funds on your account to transfer')
         else:
-            klient[name] += int(input('Enter the sum'))
-        bank.append(klient)
-    elif command == 'Withdraw':
-        if name not in bank:
-            klient[name] = int(input('Enter the sum'))
-        else:
-            klient[name] -= int(input('Enter the sum'))
-    elif command == 'Balance':
-        if name not in bank:
-            klient[name] = int(input('U have no balance: '))
-        else:
-            print('Your current balance is: {0}'.format(klient[name]))
+            bankClients[firstClientName] -= summary
+            bankClients[secondClientName] += summary
+            print('The transfer completed, transferred {0}'.format(summary))
+        continue
+    elif command == 'income':
+        rate = int(input('Enter the rate: '))
+        for key, funds in bankClients.items():
+            if funds > 0:
+                funds += int(funds / 100 * rate)
