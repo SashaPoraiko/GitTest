@@ -1,44 +1,57 @@
 command = ''
 bankClients = {}
-
+commands = ['deposit', 'balance', 'withdraw', 'transfer', 'income']
 while True:
 
-    command = input('Enter the command: ')
+    command = input('The possible commands: {0}, Enter the command: '.format(commands))
     if command == 'end':
         break
 
-    name = input('Enter your name: ')
+    if command not in commands:
+        print('Wrong command, the possible commands are:{0}'.format(commands))
+        continue
 
-    if name not in bankClients:
-        bankClients[name] = 0
+    # todo fix this
+    name = None
+    if command != 'income':
+        name = input('Enter your name: ')
 
     if command == 'deposit':
-        bankClients[name] += int(input('Enter the sum: '))
+        smr = int(input('Enter the sum: '))
+        if smr > 0:
+            bankClients[name] = bankClients.get(name, 0) + smr
+            print('Congrats! Deposit was successfully! Your current balance is: {0}'.format(bankClients[name]))
+        else:
+            print('Wrong sum! sum should be more then 0!!')
 
     elif command == 'withdraw':
-        bankClients[name] -= int(input('Enter the sum: '))
+
+        smr = int(input('Enter the sum: '))
+        if smr > 0:
+            bankClients[name] = bankClients.get(name, 0) - smr
+            print('Congrats! Withdraw was successfully! Your current balance is: {0}'.format(bankClients[name]))
+        else:
+            print('Wrong sum! sum should be more then 0!!')
 
     elif command == 'balance':
-        print('Your current balance is: {0}'.format(bankClients[name]))
+        if name in bankClients:
+            print('Your current balance is: {0}'.format(bankClients[name]))
+        else:
+            print('Error!! U have no balance!!')
 
     elif command == 'transfer':
-        firstClientName = input('Enter the sender client name: ')
+        bankClients[name] = bankClients.get(name, 0)
         secondClientName = input('Enter the receiver client name: ')
         summary = int(input('Enter the transfer sum : '))
 
-        if firstClientName not in bankClients:
-            bankClients[firstClientName] = 0
-        if secondClientName not in bankClients:
-            bankClients[secondClientName] = 0
-        if summary > bankClients[firstClientName]:
-            print('There are not enough funds on your account to transfer')
-        else:
-            bankClients[firstClientName] -= summary
-            bankClients[secondClientName] += summary
-            print('The transfer completed, transferred {0}'.format(summary))
+        bankClients[secondClientName] = bankClients.get(secondClientName, 0)
+        bankClients[name] = bankClients.get(name, 0) - summary
+        bankClients[secondClientName] = bankClients.get(secondClientName, 0) + summary
+
+        print('The transfer completed, transferred {0}'.format(summary))
 
     elif command == 'income':
         rate = int(input('Enter the rate: '))
-        for key, funds in bankClients.items():
-            if funds > 0:
-                funds += int(funds / 100 * rate)
+        for key, balance in filter(lambda item: item[1] > 0, bankClients.items()):
+            bankClients[key] += int(balance * rate / 100)
+        print('Every client with positive balance has been improved!')
