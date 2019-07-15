@@ -14,15 +14,13 @@ while True:
 
     if command == 'deposit':
         bankClients[name] += int(input('Enter the sum: '))
-        continue
 
     elif command == 'withdraw':
         bankClients[name] -= int(input('Enter the sum: '))
-        continue
 
     elif command == 'balance':
         print('Your current balance is: {0}'.format(bankClients[name]))
-        continue
+
     elif command == 'transfer':
         firstClientName = input('Enter the sender client name: ')
         secondClientName = input('Enter the receiver client name: ')
@@ -38,10 +36,9 @@ while True:
             bankClients[firstClientName] -= summary
             bankClients[secondClientName] += summary
             print('The transfer completed, transferred {0}'.format(summary))
-        continue
+
     elif command == 'income':
         rate = int(input('Enter the rate: '))
         for key, funds in bankClients.items():
             if funds > 0:
                 funds += int(funds / 100 * rate)
-    continue
