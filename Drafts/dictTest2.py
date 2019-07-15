@@ -44,3 +44,4 @@ while True:
         for key, funds in bankClients.items():
             if funds > 0:
                 funds += int(funds / 100 * rate)
+    continue
