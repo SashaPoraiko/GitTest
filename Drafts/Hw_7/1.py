@@ -2,25 +2,20 @@ buyers = {}
 
 # name/item/count
 while True:
-    b = input('Enter the data: ').split()
-    temp = {}
+    command = input('Enter the command: ')
 
-    if len(b) != 3:
+    if command == 'end':
         break
+    if command == 'write':
+        temp = {}
 
-    temp[b[1]] = int(b[2])
+        name, product, count = input('Enter the data: ').split()
+        count = int(count)
 
-    if b[0] not in buyers.keys():
-        buyers[b[0]] = temp
-
-    else:
-        if buyers[b[0]].get(b[1]) is None:
-            pair = {b[1]: int(b[2])}
-            buyers[b[0]].update(pair)
-        else:
-            buyers[b[0]][b[1]] += int(b[2])
-
-for name, miniDict in sorted(buyers.items()):
-    print(name + ':')
-    for items in sorted(dict(miniDict).items()):
-        print(items)
+        buyers[name][product] = buyers.setdefault(name, {}).get(product, 0) + count
+        print(buyers)
+    if command == 'read':
+        for name in sorted(buyers.keys()):
+            print(name + ':')
+            for product in sorted(buyers[name].keys()):
+                print('\t', product, buyers[name][product])
