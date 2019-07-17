@@ -1,10 +1,11 @@
 buyers = {}
+
 # name/item/count
 while True:
     b = input('Enter the data: ').split()
     temp = {}
 
-    if len(b) < 3:
+    if len(b) != 3:
         break
 
     temp[b[1]] = int(b[2])
@@ -19,5 +20,7 @@ while True:
         else:
             buyers[b[0]][b[1]] += int(b[2])
 
-print(buyers)
-#sorted
+for name, miniDict in sorted(buyers.items()):
+    print(name + ':')
+    for items in sorted(dict(miniDict).items()):
+        print(items)
