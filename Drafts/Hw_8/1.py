@@ -26,11 +26,11 @@ while True:
     elif command == 'search':
         country = input('Enter the country: ')
         myFile = open('Stadiums.txt', 'r')
-        someLst = myFile.readlines()
-        oldestVal = int(someLst[0].split('\t')[4])
+        stadiums = myFile.readlines()
+        oldestVal = int(stadiums[0].split('\t')[4])
         oldestStadium = ''
         totalCapacity = 0
-        for stadium in someLst:
+        for stadium in stadiums:
             if stadium.split('\t')[2] == country:
                 totalCapacity += int(stadium.split('\t')[3])
                 if int(stadium.split('\t')[4]) <= oldestVal:
