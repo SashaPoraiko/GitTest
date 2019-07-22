@@ -1,0 +1,2 @@
+17283	audi	100	1989	1500	350000	poraiko sasha
+12331	mercedess	200	1989	2500	320000	vadim vadim
