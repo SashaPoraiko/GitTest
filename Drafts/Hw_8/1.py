@@ -26,18 +26,22 @@ while True:
     elif command == 'search':
         country = input('Enter the country: ')
         myFile = open('Stadiums.txt', 'r')
-        stadiums = myFile.readlines()
-        oldestVal = int(stadiums[0].split('\t')[4])
-        oldestStadium = ''
-        totalCapacity = 0
-        for stadium in stadiums:
-            if stadium.split('\t')[2] == country:
-                totalCapacity += int(stadium.split('\t')[3])
-                if int(stadium.split('\t')[4]) <= oldestVal:
-                    oldestVal = int(stadium.split('\t')[4])
-                    oldestStadium = stadium
+        stadiums = list(map(lambda row: row[:-1].split('\t'), myFile.readlines()))
 
-        print(
-            'The oldest stadium of this country is: {0}, and the total capacity of this country stadiums is: {1}'.format(
-                oldestStadium, totalCapacity))
+        oldestVal = None
+        oldestStadium = None
+        totalCapacity = 0
+        for stadium in filter(lambda item: item[2] == country, stadiums):
+            totalCapacity += int(stadium[3])
+            if oldestStadium is None or int(stadium[4]) < oldestVal:
+                oldestVal = int(stadium[4])
+                oldestStadium = stadium
+        if oldestStadium is None:
+            print('not found')
+        else:
+            print('The total capacity of this country stadiums is: {0}'.format(totalCapacity))
+            print(stadiums)
+            print(
+                'The oldest stadium of this country is {0}, its located in {1},'
+                ' {2}, and was built in {4}'.format(*oldestStadium))
         myFile.close()
