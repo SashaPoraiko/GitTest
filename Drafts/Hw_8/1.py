@@ -1,3 +1,5 @@
+commands = ['write', 'read', 'end', 'search']
+
 while True:
 
     command = input('Enter the command: ')
@@ -8,7 +10,7 @@ while True:
         myFile = open('Stadiums.txt', 'a')
         inpStr = input('Enter the data: ')
         inpList = inpStr.split('\t')
-        if len(inpList) != 7:
+        if len(inpList) != 5 or command not in commands:
             print('Wrong data!')
             myFile.close()
             continue
@@ -24,14 +26,17 @@ while True:
     elif command == 'search':
         country = input('Enter the country: ')
         myFile = open('Stadiums.txt', 'r')
-        oldestVal = int(myFile.readlines()[0][4])
+        someLst = myFile.readlines()
+        oldestVal = int(someLst[0].split('\t')[4])
         oldestStadium = ''
         totalCapacity = 0
-        for stadium in myFile.readlines():
-            if stadium[2] == country and int(stadium[4]) < oldestVal:
-                oldestVal = int(stadium[4])
-                oldestStadium = stadium
-            totalCapacity += int(stadium[3])
+        for stadium in someLst:
+            if stadium.split('\t')[2] == country:
+                totalCapacity += int(stadium.split('\t')[3])
+                if int(stadium.split('\t')[4]) <= oldestVal:
+                    oldestVal = int(stadium.split('\t')[4])
+                    oldestStadium = stadium
+
         print(
             'The oldest stadium of this country is: {0}, and the total capacity of this country stadiums is: {1}'.format(
                 oldestStadium, totalCapacity))
