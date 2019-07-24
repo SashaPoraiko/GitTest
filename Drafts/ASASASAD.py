@@ -1,4 +1,4 @@
-commands = ['end', 'write', 'read', 'calculate']
+commands = ['end', 'write', 'read', 'calculate_semester', 'calculate_lecturers']
 
 
 def calculate_things_semester(file_name):
