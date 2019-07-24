@@ -1,23 +1,26 @@
-commands = ['end', 'write', 'read', 'calculate_semester', 'calculate_lecturers']
+commands = ['end', 'write', 'read', 'calculate']
 
 
 def calculate_things_semester(file_name):
     semester = input('Enter the semester number: ')
+    disc_list = listed_disciplines(file_name)
+    total_hours = 0
+    for discipline in filter(lambda x: x[1] == semester, disc_list):
+        total_hours += int(discipline[2])
+    return total_hours
+
+
+def listed_disciplines(file_name):
     with open(file_name, 'r') as items:
-        disciplines_list = list(map(lambda row: row[:-1].split('\t'), items.readlines()))
-        total_hours = 0
-        for discipline in filter(lambda x: x[1] == semester, disciplines_list):
-            total_hours += int(discipline[2])
-    print('The total hours for current semester is: {}'.format(total_hours))
+        return list(map(lambda row: row[:-1].split('\t'), items.readlines()))
 
 
 def calculate_unique_lecturers(file_name):
-    with open(file_name, 'r') as items:
-        disciplines_list = list(map(lambda row: row[:-1].split('\t'), items.readlines()))
-        lecturers_list = []
-        for discipline in filter(lambda x: x[4] not in lecturers_list, disciplines_list):
-            lecturers_list.append(discipline[4])
-        print('The unique lecturers list is: {}'.format(lecturers_list))
+    disc_list = listed_disciplines(file_name)
+    lecturers_list = []
+    for discipline in filter(lambda x: x[4] not in lecturers_list, disc_list):
+        lecturers_list.append(discipline[4])
+    return lecturers_list
 
 
 def read(file_name):
@@ -53,10 +56,9 @@ def run():
             write(file)
         elif command == 'read':
             read(file)
-        elif command == 'calculate_semester':
-            calculate_things_semester(file)
-        elif command == 'calculate_lecturers':
-            calculate_unique_lecturers(file)
+        elif command == 'calculate':
+            print('The total hours for current semester is: {}'.format(calculate_things_semester(file)))
+            print('The unique lecturers list is: {}'.format(calculate_unique_lecturers(file)))
 
 
 if __name__ == '__main__':
