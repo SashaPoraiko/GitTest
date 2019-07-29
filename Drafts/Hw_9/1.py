@@ -1,30 +1,24 @@
+import file_modules
+from functools import reduce
+
 commands = ['end', 'write', 'read', 'calculate']
 
 
 def write(file_name):
-    with open(file_name, 'a') as bank_clients:
-        inc_client = input('Enter the Client: ')
-        if not validate(inc_client.split('\t')):
-            print('Wrong data!')
-        else:
-            bank_clients.write(inc_client + '\n')
-
-
-def listed_clients(file_name):
-    with open(file_name, 'r') as items:
-        return list(map(lambda row: row[:-1].split('\t'), items.readlines()))
+    inc_client = input('Enter the Client: ')
+    if not validate(inc_client.split('\t')):
+        print('Wrong data!')
+        return
+    file_modules.write(file_name, inc_client)
 
 
 def calculate_credits(file_name):
-    clients_list = listed_clients(file_name)
-    smr = 0
-    for client in clients_list:
-        smr += int(client[4])
-    return smr
+    clients_list = file_modules.listing(file_name)
+    return reduce(lambda l, r: l + int(r[4]), clients_list, 0)
 
 
 def youngest_creditor(file_name):
-    clients_list = listed_clients(file_name)
+    clients_list = file_modules.listing(file_name)
 
 
 def validate(data):
@@ -32,8 +26,7 @@ def validate(data):
 
 
 def read(file_name):
-    with open(file_name, 'r') as bank_clients:
-        print('\n' + bank_clients.read())
+    print(file_modules.read(file_name))
 
 
 def run():

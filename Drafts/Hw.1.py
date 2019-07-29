@@ -1,10 +1,5 @@
-a = int(input('Enter first number: '))
-b = int(input('Enter the second number: '))
-c = int(input('Enter the third number: '))
+import my_module
 
-if a > b and a > c:
-    print('The greatest number is', a)
-elif b > c:
-    print('The greatest number is', b)
-else:
-    print('The greatest number is', c)
+my_module.hello()
+
+print(my_module.fib(3))

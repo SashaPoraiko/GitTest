@@ -1,24 +1,19 @@
-
+import file_modules
 
 commands = ['end', 'write', 'read', 'calculate']
 
 
 def calculate_things_semester(file_name):
     semester = input('Enter the semester number: ')
-    disc_list = listed_disciplines(file_name)
+    disc_list = file_modules.listing(file_name)
     total_hours = 0
     for discipline in filter(lambda x: x[1] == semester, disc_list):
         total_hours += int(discipline[2])
     return total_hours
 
 
-def listed_disciplines(file_name):
-    with open(file_name, 'r') as items:
-        return list(map(lambda row: row[:-1].split('\t'), items.readlines()))
-
-
 def calculate_unique_lecturers(file_name):
-    disc_list = listed_disciplines(file_name)
+    disc_list = file_modules.listing(file_name)
     lecturers_list = []
     for discipline in filter(lambda x: x[4] not in lecturers_list, disc_list):
         lecturers_list.append(discipline[4])
@@ -26,17 +21,15 @@ def calculate_unique_lecturers(file_name):
 
 
 def read(file_name):
-    with open(file_name, 'r') as thing_list:
-        print('\n' + thing_list.read())
+    print(file_modules.read(file_name))
 
 
 def write(file_name):
-    with open(file_name, 'a') as thing_list:
-        inc_thing = input('Enter the Thing: ')
-        if not validate(inc_thing.split('\t')):
-            print('Wrong data!')
-            return
-        thing_list.write(inc_thing + '\n')
+    inc_thing = input('Enter the Thing: ')
+    if not validate(inc_thing.split('\t')):
+        print('Wrong data!')
+        return
+    file_modules.write(file_name, inc_thing)
 
 
 def validate(data):
