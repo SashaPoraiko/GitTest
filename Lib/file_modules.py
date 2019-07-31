@@ -5,7 +5,7 @@ def read(file_name):
 
 def write(file_name, inc_thing):
     with open(file_name, 'a') as file:
-        file.write(inc_thing + '\n')
+        file.write(repr(inc_thing) + '\n')
 
 
 def listing(file_name):

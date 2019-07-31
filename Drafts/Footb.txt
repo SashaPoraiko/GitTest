@@ -1,0 +1,10 @@
+The club name is: Chelsea, Italy, built in: 1980
+	Owner is: Abramovich, with total budget: 12385222222,and won: 32 trophies
+The club name is: Chelsea, Italy, built in: 1980
+	Owner is: Abramovich, with total budget: 12385222222,and won: 32 trophies
+The club name is: Chelsea, Italy, built in: 1980
+	Owner is: Abramovich, with total budget: 12385222222,and won: 32 trophies
+T: Chelsea, Italy, built in: 1980
+	Owner is: Abramovich, with total budget: 12385222222,and won: 32 trophies
+T: Chelsea, Italy, built in: 1980
+	Owner is: Abramovich, with  : 12385222222,and won: 32 trophies
