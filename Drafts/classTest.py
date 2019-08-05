@@ -44,8 +44,8 @@ madrid = FootballClub('Madrid', 'Spain', 2888, 'Peres', trophy_count=102)
 chelsea = FootballClub('Chelsea', 'Italy', 1980, 'Abramovich', 12385222222, 32)
 n_madrid = FootballClub('Madrid', 'Spain', 2888, 'Peres', trophy_count=102)
 
-# print(chelsea)
-# print(madrid)
+print(chelsea)
+print(madrid)
 
-chelsea.save()
+# chelsea.save()
 

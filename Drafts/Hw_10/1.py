@@ -25,8 +25,12 @@ def calculate_unique_authors(file_name):
 
 def calculate_oldest_book(file_name):
     books_list = file_modules.listing(file_name)
-    oldest_book = books_list[0]
-    
+    oldest_book = None
+    oldest_year = int(books_list[0][3])
+    for book in filter(lambda x: int(x[3]) < oldest_year, books_list):
+        oldest_book = book
+    return oldest_book
+
 
 def validate(data):
     return len(data) == 6
@@ -48,7 +52,8 @@ def run():
         elif command == 'read':
             read(file)
         elif command == 'calculate':
-            print(1)
+            print('The oldest book is: {}'.format(calculate_oldest_book(file)))
+            print('The unique authors are: {}'.format(calculate_unique_authors(file)))
 
 
 if __name__ == '__main__':
