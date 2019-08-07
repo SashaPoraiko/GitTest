@@ -31,7 +31,7 @@ class BankCustomer(Person):
 ivan = BankCustomer('Ivanov Ivan Ivanovuch', '20-02-1996', 'ktl123ig', 'male', 23000, '0999876273')
 olia = BankCustomer('Ivanova Olia Ivanovna', '20-02-1998', 'qtw123ig', 'female', 13500, '0990887265')
 masha = BankCustomer('Petrova Masha Ostapivna', '20-06-1992', 'ktjh73ig', 'female', 43897, '0998753785')
-bogdan = BankCustomer('Ivanov Bogdan Bogdanovuch', '13-03-1991', 'kt9uk3ig', 'male', 4289, '0667224564')
+bogdan = BankCustomer('Ivanov Bohdan Bogdanovuch', '13-03-1991', 'kt9uk3ig', 'male', 4289, '0667224564')
 
 print(BankCustomer.avg_male_clients_age())
 print(BankCustomer.total_credit_sum())

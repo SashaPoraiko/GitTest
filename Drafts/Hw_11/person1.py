@@ -30,7 +30,17 @@ class Person:
         return file_modules.read(cls.file)
 
     def calculate_years(self):
-        return datetime.now().year - self.birth_date.year
+        today = datetime.now()
+        try:
+            birthday = self.birth_date.replace(year=today.year)
+            # raised when birth date is February 29
+            # and the current year is not a leap year
+        except ValueError:
+            birthday = self.birth_date.replace(year=today.year,
+                                               month=self.birth_date.month + 1, day=1)
+        if birthday > today:
+            return today.year - self.birth_date.year - 1
+        return today.year - self.birth_date.year
 
 
 if __name__ == '__main__':

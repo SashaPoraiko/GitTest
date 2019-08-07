@@ -28,13 +28,13 @@ class Programmer(Person):
 
     @classmethod
     def get_worst_project(cls, firm):
-        lowest_salary = max(map(lambda x: x.salary, cls.get_programmers_by_firm(firm)))
-        worst_project = ''
+        lowest_salary = None
+        worst_project = None
         for programmer in cls.get_programmers_by_firm(firm):
-            if programmer.salary < lowest_salary:
+            if lowest_salary is None or programmer.salary < lowest_salary:
                 lowest_salary = programmer.salary
                 worst_project = programmer.current_project
-        return worst_project
+        return worst_project, lowest_salary
 
 
 vadim = Programmer('Korniychuk Vadim Batkovuch', '02-03-1996', 'firma', 'arrays', 'topDev', 32000, 'courses')
