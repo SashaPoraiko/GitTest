@@ -6,7 +6,7 @@ class Footballer(Person):
     _instances = []
     file = 'footballers.csv'
     columns = ['full_name', 'birth_date', 'country', 'club', 'matches_count', 'goals_count',
-               'goal_passes' 'date_format']
+               'goal_passes', 'date_format']
 
     def __init__(self, full_name, birth_date, country, club, matches_count, goals_count, goal_passes,
                  date_format='%d-%m-%Y'):
@@ -66,11 +66,10 @@ class Footballer(Person):
 
 if __name__ == '__main__':
     p1 = Footballer('abra cadabra cabra', '27-07-1876', 'argentina', 'club1', 193, 26, 13)
-    p1.add_single_footballer()
+
     p2 = Footballer('abra asdqqe terte', '27-07-1899', 'argentina', 'club2', 123, 9, 8)
-    p2.add_single_footballer()
+
     p3 = Footballer('abra qweqxxx caqweertqbra', '27-07-1876', 'italy', 'club3', 93, 16, 4)
-    p3.add_single_footballer()
 
-
-# print(Footballer.get_footballers_form_csv())
+    Footballer.save_footballers()
+    print(Footballer.get_footballers_form_csv())
