@@ -22,6 +22,14 @@ class Person:
             datetime.strftime(self.birth_date, self.date_format)
         )
 
+    @property
+    def dict(self):
+        return {
+            'full_name': self.full_name,
+            'birth_date': datetime.strftime(self.birth_date, self.date_format),
+            'date_format': self.date_format
+        }
+
     def save_human(self):
         file_modules.write(self.file, self)
 

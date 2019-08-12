@@ -1,5 +1,5 @@
 from Drafts.Hw_11.person1 import Person
-from Lib.csv_file_module import *
+from Lib import csv_file_module as csv_f
 
 
 class Footballer(Person):
@@ -20,16 +20,15 @@ class Footballer(Person):
 
     @property
     def dict(self):
-        return {
-            'full_name': self.full_name,
-            'birth_date': self.birth_date,
+        data = super(Footballer, self).dict
+        data.update({
             'country': self.country,
             'club': self.club,
             'matches_count': self.matches_count,
             'goals_count': self.goals_count,
-            'goal_passes': self.goal_passes,
-            'date_format': self.date_format,
-        }
+            'goal_passes': self.goal_passes
+        })
+        return data
 
     @classmethod
     def get_dicted_footballers(cls):
@@ -51,17 +50,17 @@ class Footballer(Person):
 
     @classmethod
     def save_footballers(cls):
-        save_all_into_csv(cls.file, cls.get_dicted_footballers(), cls.columns)
+        csv_f.save_all_into_csv(cls.file, cls.get_dicted_footballers(), cls.columns)
 
     def __add_single_footballer(self):
-        add_single(self.file, self.columns, self.dict)
+        csv_f.add_single(self.file, self.columns, self.dict)
 
     def add_single_footballer(self):
         self.__add_single_footballer()
 
     @classmethod
     def get_footballers_form_csv(cls):
-        return read_from_csv(cls.file)
+        cls._instances = [Footballer(**row) for row in csv_f.read_from_csv(cls.file)]
 
 
 if __name__ == '__main__':
@@ -72,4 +71,5 @@ if __name__ == '__main__':
     p3 = Footballer('abra qweqxxx caqweertqbra', '27-07-1876', 'italy', 'club3', 93, 16, 4)
 
     Footballer.save_footballers()
-    print(Footballer.get_footballers_form_csv())
+    Footballer.get_footballers_form_csv()
+    print(Footballer._instances)
