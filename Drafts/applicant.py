@@ -48,7 +48,11 @@ class Applicant(Person):
 
     @classmethod
     def find_dude(cls, name):
-        sm.find_single(cls.shelve_file, name)
+        return sm.find_single(cls.shelve_file, name)
+
+    def save(self):
+        query = 'insert into Applicant values(Null, :full_name )'
+        # cursor.execute(query, self.dict)
 
 
 if __name__ == '__main__':
@@ -64,3 +68,4 @@ if __name__ == '__main__':
     Applicant.get_from_shelve()
     print(len(Applicant._instances))
     print(Applicant.find_dude('zhorik kqwe1231wqu xmvopopxvxp'))
+    print(Applicant.find_dude(' kqwe1231wqu xmvopopxvxp'))

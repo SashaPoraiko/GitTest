@@ -19,4 +19,4 @@ def add_single(file, key, thing):
 
 def find_single(file, key):
     with shelve.open(file, flag='r') as f:
-        return filter(lambda x: x == key, f.keys())
+        return f.get(key, 'not found')
