@@ -5,10 +5,9 @@ import file_modules
 class Person:
     file = 'Humans.txt'
 
-    def __init__(self, full_name, birth_date, date_format='%d-%m-%Y'):
+    def __init__(self, full_name, birth_date):
         self.full_name = full_name
-        self.birth_date = datetime.strptime(birth_date, date_format)
-        self.date_format = date_format
+        self.birth_date = datetime.strptime(birth_date)
 
     def __repr__(self):
         return 'Full name of person is: {}, and the birth date is: {}'.format(
