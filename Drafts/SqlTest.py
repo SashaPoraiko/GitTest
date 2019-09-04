@@ -5,7 +5,7 @@ from Drafts.Hw_11.person1 import Person
 if __name__ == '__main__':
     con = sqlite3.connect('dbSqlTest.sqlite')
     cur = con.cursor()
-    qwery_create_person = """
+    query_create_person = """
     create table `person`(
     `id` integer primary key autoincrement not null,
     `full_name` varchar(256) not null,
@@ -15,7 +15,9 @@ if __name__ == '__main__':
     human_str = 'Poraiko Oleksandr Viorelovuch, 28-06-1993'
     human_str_2 = 'Poroshenko Petro Batkovuch, 13-02-1775'
     human_str_3 = 'Ivanova Dasha Ivanovna, 20-02-1992'
+
     lst = []
+
     lst.append(human_str.split(', '))
     lst.append(human_str_2.split(', '))
     lst.append(human_str_3.split(', '))

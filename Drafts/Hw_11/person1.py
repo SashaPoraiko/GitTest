@@ -5,9 +5,10 @@ import file_modules
 class Person:
     file = 'Humans.txt'
 
-    def __init__(self, full_name, birth_date):
+    def __init__(self, full_name, birth_date, date_format='%d-%m-%Y'):
         self.full_name = full_name
-        self.birth_date = datetime.strptime(birth_date)
+        self.birth_date = datetime.strptime(birth_date, date_format)
+        self.date_format = date_format
 
     def __repr__(self):
         return 'Full name of person is: {}, and the birth date is: {}'.format(
@@ -20,14 +21,6 @@ class Person:
             self.full_name,
             datetime.strftime(self.birth_date, self.date_format)
         )
-
-    @property
-    def dict(self):
-        return {
-            'full_name': self.full_name,
-            'birth_date': datetime.strftime(self.birth_date, self.date_format),
-            'date_format': self.date_format
-        }
 
     def save_human(self):
         file_modules.write(self.file, self)
