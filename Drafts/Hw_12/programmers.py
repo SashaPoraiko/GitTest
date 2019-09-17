@@ -37,6 +37,8 @@ class Programmer(Person):
         return worst_project, lowest_salary
 
 
+
+
 vadim = Programmer('Korniychuk Vadim Batkovuch', '02-03-1996', 'firma', 'arrays', 'topDev', 32000, 'courses')
 sasha = Programmer('Poraiko Sasha Batkovuch', '05-11-1993', 'firma', 'arrays', 'topDev', 132000, 'studying')
 dima = Programmer('SkyGroup Dmutro Batkovuch', '12-03-1989', 'firma', 'arrays', 'topDev', 232000, 'learning')

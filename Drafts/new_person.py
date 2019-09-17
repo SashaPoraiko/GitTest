@@ -8,7 +8,6 @@ cur = con.cursor()
 
 
 class Person:
-    file = 'Humans.txt'
 
     def __init__(self, full_name, birth_date):
         self.full_name = full_name
@@ -114,6 +113,44 @@ class Programmer(Person):
             'current_project': self.current_project
         }
 
+    @classmethod
+    def get_programmers_by_spec(cls, spec):
+        sql_get_programmers = """
+        select firm_name,count(id) from programmer
+        where spec='{}'
+        GROUP by firm_name
+        """.format(spec)
+        cur.execute(sql_get_programmers)
+        programmers = cur.fetchall()
+        return [{'firm': firm, 'count': count} for firm, count in programmers]
+
+    @classmethod
+    def get_avg_salary(cls, firm_name):
+        sql_avg_salary = """
+            select avg(salary) from programmer
+            where firm_name="{}"
+        """.format(firm_name)
+        cur.execute(sql_avg_salary)
+        return cur.fetchone()[0]
+
+    @classmethod
+    def best_salaries_per_firm(cls):
+        sql_best_salaries = """
+        select firm_name, max(salary) from programmer group by firm_name
+        """
+        cur.execute(sql_best_salaries)
+        salaries = cur.fetchall()
+        return [{'firm': firm, 'salary': salary} for firm, salary in salaries]
+
+    @classmethod
+    def worst_project(cls):
+        sql_worst_project = """
+        select current_project from programmer
+         where salary=(select min(salary) from programmer)
+        """
+        cur.execute(sql_worst_project)
+        return cur.fetchall()
+
     def insert(self):
         sql_person_insert = """
         insert into `person` (full_name, birth_date) 
@@ -169,15 +206,10 @@ if __name__ == '__main__':
        'person_id' integer not null
        );
        """
+    print(Programmer.get_programmers_by_spec('arrays'))
+
     # cur.execute(query_create_programmer)
     # con.commit()
-
-    prog2 = Programmer.get_by_id(2)
-    print(prog2.salary)
-    print(prog2)
-    prog2.salary = 99999
-
-    prog2.save()
 
     # vadim = Programmer('Korniychuk Vadim Batkovuch', '02-03-1996', 'firma', 'arrays', 'topDev', 32000, 'courses')
     # sasha = Programmer('Poraiko Sasha Batkovuch', '05-11-1993', 'firma', 'arrays', 'topDev', 132000, 'studying')
